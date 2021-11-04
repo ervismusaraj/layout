@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<style>
+  html, body { 
+margin:0;
+padding:0;
+width:100%;
+overflow: hidden;
+overflow-y: auto !important;
+background-color: black;
+
+}
+  #login {
+  height: 34px;width: 100px;
+  background-color: #F45C20;
+  background-image: linear-gradient(#eb3f19,#fd7426);
+}
+#register {
+  height: 34px;width: 123px;
+  background-color: #F45C20;
+  background-image: linear-gradient(#eb3f19,#fd7426);
+}
+::placeholder {
+  color: #ADADAD;
+  opacity: 1;
+}
+
+:-ms-input-placeholder { 
+  color: #ADADAD;
+}
+
+::-ms-input-placeholder {
+  color: #ADADAD;
+}
+.nav-item.active  {
+  background-color: #F45C20;
+  background-image: linear-gradient(#fd7426,#eb3f19);
+  transform: skew(-20deg);
+  padding: 10px;
+}
+.nav-item.active a {
+  transform: skew(20deg);
+}
+.nav-item {
+display: flex;
+align-items: center;
+}
+.navbar-nav{
+min-height: 64px;
+margin-left: 30px;
+font-weight: bold;
+}
+#menu{
+background-color: #252525 !important;
+height: 64px;
+border-top: 1px solid #f76f20;
+font-family: Poppins !important;
+color: white !important;
+}
+#clock{
+border: 1px solid #6E6E6E;
+border-radius: 5px;
+height: 44px;
+display:flex;
+flex-direction: column;
+min-width: 200px;
+align-items: center;
+font-size: 12px;
+margin-top: auto;
+margin-bottom: auto;
+}
+nav a{
+color: white !important;
+}
+#play{
+  background-color: #F45C20;
+  background-image: linear-gradient(#fd7426,#eb3f19);
+  position: absolute;
+  top: 60%;
+  left: 100px;
+  color: white;
+  font-family: Poppins;
+  font-weight: bold;
+  border: none;
+  padding: 15px 30px 15px 30px;
+  clip-path: polygon(14px 0%, 100% 0%, calc(100% - 14px) 100%, 0% 100%);
+}
+
+#playmatch{
+  display: block;
+  background-color: #F45C20;
+  background-image: linear-gradient(#eb3f19,#fd7426);
+  color: white;
+  font-family: Poppins;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 15px 5px 15px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+}
+
+#footer span{
+color: white;
+}
+#rightfooter div span:nth-child(1){
+font-weight: bold;
+}
+#rightfooter div:nth-child(1){
+margin-left: 0px !important;
+}
+#rightfooter div{
+margin-left: 20px;
+}
+#rightfooter div span:nth-child(1){
+border-bottom: 2px solid #eb3f19;
+border-image: linear-gradient(to right,#f76f20 20px, black 20px) 1
+}
+#bannertext1,#bannertext2,#bannertext3{
+position: absolute;
+left: 100px;
+color: white;
+font-family: Poppins;
+font-weight: bold;
+}
+#bannertext1{
+top: 35%;font-size: 26px;
+}
+#bannertext2{
+top: 42%;font-size: 18px;
+}
+#bannertext3{
+top: 47%;font-size: 18px;
+}
+#gamebar1,#gamebar2{
+margin-top: 20px;
+display: flex;
+justify-content:space-around;
+width: 100%;
+font-size: 16px;
+}
+#gamebar1 div,#gamebar2 div{
+display: flex;
+flex-direction: column;
+width: 13%;
+font-weight: bold;
+color: white;
+}
+#bannerwrap{
+width: 75%;
+margin-left: 20px;
+height: auto;
+background:#00001a;
+height: 460px;
+}
+#matchwrap{
+width: 25%;
+margin-left: 20px;
+display: block;
+background: #00001a;
+height: 460px;
+background-size: cover;
+}
+#labels{
+background-color: #222222;
+display: flex;
+height: 46px;
+align-items: center;
+margin-top: 30px;
+width: 100%;
+}
+@media screen and (max-width: 1500px) {
+#div1 {
+margin-top:80px !important;
+width: auto !important;
+}
+#div1 img{
+margin-left: 0px !important;
+}
+#div2{
+top: 10px !important;
+}
+#navbar{
+align-items:initial;
+flex-direction: column;
+justify-content: center;
+height: auto !important;
+}
+#div3{
+margin-left: 0px !important;
+margin-right: 0px !important;
+margin-top: 20px !important;
+}
+}
+@media screen and (max-width: 991px) {
+#menu{
+height:auto !important;
+}
+.navbar-nav{
+margin-left: 0px !important;
+}
+}
+@media screen and (min-width: 901px) and (max-width: 1399px) {
+#bannerwrap{
+width: 65% !important;
+}
+#matchwrap{
+width: 35% !important;
+}
+}
+@media screen and (max-width: 600px) {
+#matchwrap{
+width: 340px !important;
+}
+}
+
+@media screen and (max-width: 900px) {
+#main{
+flex-direction: column !important;
+height: auto !important;
+align-items: unset !important;
+}
+
+#bannerwrap{
+  width: 90% !important;
+}
+#matchwrap{
+  height: auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 80% !important;
+  margin-top: 30px;
+}
+#bannertext1,#bannertext2,#bannertext3{
+width: 70%;
+}
+#bannertext1{
+  top: 20% !important;
+}
+#bannertext2{
+  top: 25% !important;
+}
+#bannertext3{
+  top: 30% !important;
+}
+#play{
+  top: 40%;
+}
+#gamebar1,#gamebar2{
+display: -ms-grid !important;
+display: grid !important;
+-ms-grid-columns: 1fr 1fr;
+grid-template-columns: auto auto;
+width: 95% !important;
+}
+#gamebar1 div,#gamebar2 div{
+margin-top: 10px;
+margin-left: 10px;
+}
+#gamebar1 div:nth-child(1){
+  -ms-grid-column: 1;
+  -ms-grid-row: 1;
+}
+#gamebar1 div:nth-child(2){
+  -ms-grid-column: 2;
+  -ms-grid-row: 1;
+}
+#gamebar1 div:nth-child(3){
+  -ms-grid-column: 1;
+  -ms-grid-row: 2;
+}
+#gamebar1 div:nth-child(4){
+  -ms-grid-column: 2;
+  -ms-grid-row: 2;
+}
+#gamebar1 div:nth-child(5){
+  -ms-grid-column: 1;
+  -ms-grid-row: 3;
+}
+#gamebar1 div:nth-child(6){
+  -ms-grid-column: 2;
+  -ms-grid-row: 3;
+}
+#gamebar1 div:nth-child(7){
+  -ms-grid-column: 1;
+  -ms-grid-row: 4;
+}
+#gamebar2 div:nth-child(1){
+  -ms-grid-column: 1;
+  -ms-grid-row: 1;
+}
+#gamebar2 div:nth-child(2){
+  -ms-grid-column: 2;
+  -ms-grid-row: 1;
+}
+#gamebar2 div:nth-child(3){
+  -ms-grid-column: 1;
+  -ms-grid-row: 2;
+}
+#gamebar2 div:nth-child(4){
+  -ms-grid-column: 2;
+  -ms-grid-row: 2;
+}
+#gamebar2 div:nth-child(5){
+  -ms-grid-column: 1;
+  -ms-grid-row: 3;
+}
+#gamebar2 div:nth-child(6){
+  -ms-grid-column: 2;
+  -ms-grid-row: 3;
+}
+#gamebar2 div:nth-child(7){
+  -ms-grid-column: 1;
+  -ms-grid-row: 4;
+}
+#gamebar1 div,#gamebar2 div{
+min-width: 160px;
+width: auto !important;
+}
+}
+
+@media screen and (max-width: 800px) {
+#paybrands{
+width: 100%;
+}
+#labels div img{
+width: 80%;
+}
+}
+
+@media screen and (max-width: 700px) {
+#footer{
+flex-direction: column;
+}
+#rightfooter,#leftfooter{
+  margin-left: 10px !important;
+  font-size: 14px !important;
+  width: 80%; 
+}
+#rightfooter{
+min-height: auto !important;
+align-items: flex-start !important;
+}
+#rightfooter div:nth-child(1){
+margin-left: 0px !important;
+}
+#rightfooter div{
+margin-left: 10px !important;
+}
+#paybrands img{
+margin-left: 10px !important;
+}
+}
+
+</style>
+<script>
+
+  var text="";
+  
+  $(document).ready(function(){
+   text=moment().format('H:mm, dddd, D MMMM  YYYY'); 
+   document.getElementById("datetime").innerText=text;
+   setInterval(function(){
+   text=moment().format('H:mm, dddd, D MMMM  YYYY'); 
+   $("#datetime").text(text);
+},1000)
+
+var activeNavItem = $('.nav-item');
+activeNavItem.click(function(){
+  activeNavItem.removeClass('active');
+  $(this).addClass('active');  
+});
+  });
+
+  </script>
+</head>
+<body>
+
+  <div id="div2" style="position:absolute;left: calc(50% - 100px);top:30px ;"><img src="logo.png" style="width: 200px;">
+</div>
+
+<div id="navbar" style="width: 100vw;height: 95px;background-color: black;display: flex;align-items: center;">
+<div id="div1" style="display: flex;align-items: center;width: 40%;">
+<img src="Group 38.png" alt="SOMETEXT" style="margin-left: 34px;">
+<div style="margin-left: 20px;line-height: 1;font-weight: bold;">
+</div></div>
+<div id="div3" style="margin-left: auto;margin-right: 30px;color: WHITE;line-height: initial;">
+  <input type="text" id="username" style="color: white;width: 145px;height: 34px;border-radius: 15px;border: none;
+  background: url(avatar.png) no-repeat scroll 7px #585858;padding-left: 40px;" placeholder="USERNAME">
+  <input type="password" id="password" style="color: white;width: 145px;height: 34px;border-radius: 15px;border: none;
+  background: url(padlock.png) no-repeat scroll 7px #585858;padding-left: 40px;" placeholder="PASSWORD">
+  <input type="submit" id="login" style="color: white;border-radius: 15px;border: none;font-weight: bold;" value="LOGIN">
+  <input type="submit" id="register" style="color: white;border-radius: 15px;border: none;font-weight: bold;" value="REGISTER">
+  <img src="italy.png" alt="SOMETEXT"><span style="margin-left: 10px;">IT</span></div>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light" id="menu">
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Page1<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Page2</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Page3</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Page4</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Page5</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Page6</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Page7</a>
+      </li>
+    </ul>
+
+<div id="clock"> <span id="datetime"></span>
+<small id="helpdesk" style="font-weight: bold;">HELPDESK: 0831 234567</small>
+</div>
+
+</div>
+</nav>
+<div id="main" style="position: relative;display: flex;margin-top: 20px;align-items: center;height: 460px;">
+<div id="bannerwrap">
+</div>
+<div id="matchwrap">
+<img src="league.png" style="margin-left: auto;margin-right: auto;display: block;margin-top: 10px;">
+<div id="teams" style="display: flex;text-align: center;justify-content: center;margin-top: 50px;width: 100%;">
+
+<div style="display: block;text-align: center;">
+<img src="logo1.png" style="margin-left: auto;margin-right: auto;display: block;">
+<span style="color: white;font-weight: bold;font-family: Poppins;"></span>
+</div>
+<div style="display: block;text-align: center;margin-left: 40px;">
+<img src="logo2.png" style="margin-left: auto;margin-right: auto;display: block;">
+<span style="color: white;font-weight: bold;font-family: Poppins;"></span>
+</div>
+</div>
+<input type="submit" id="playmatch" value="TEXT">
+<span style="display: block;color: white;text-align: center;margin-top: 10px;font-weight: bold;font-family: Poppins;">21:00</span>
+<span style="display: block;color: white;text-align: center;font-family: Poppins;">23/04/2021</span>
+
+</div>
+
+<span id="bannertext1">Lorem Ipsum</span>
+<span id="bannertext2" >is simply dummy text</span>
+<span id="bannertext3" >of the printing and typesetting industry.</span>
+<input type="submit" id="play" value="TEXT">
+</div>
+
+<div style="color: white;width: 100vw;display: flex;margin-top: 30px;"><span style="margin-left: 10px;color: #f76f20;
+  font-family: Poppins;font-weight: bold;font-size: 20px;">LIVE</span> 
+<span style="margin-left: auto;margin-right: 20px;">ALL</span></div>
+
+<div id="gamebar1">
+<div>
+<img src="Archangels.png"><span>STREAM</span></div>
+<div>
+<img src="Archangels.png"><span>STREAM</span></div>
+<div>
+<img src="Archangels.png"><span>STREAM</span></div>
+<div>
+<img src="Archangels.png" ><span>STREAM</span></div>
+<div>
+<img src="Archangels.png"><span >STREAM</span></div>
+<div>
+<img src="Archangels.png" ><span>STREAM</span></div>
+<div>
+<img src="Archangels.png" ><span >STREAM</span></div>
+</div>
+
+<div style="color: white;width: 100vw;display: flex;margin-top: 30px;"><span style="margin-left: 10px;
+color: #f76f20;font-family: Poppins;font-weight: bold;font-size: 20px;"></span> 
+<span style="margin-left: auto;margin-right: 20px;">ALL</span></div>
+
+<div id="gamebar2">
+<div>
+<img src="Archangels.png"><span>STREAM</span></div>
+<div>
+<img src="Archangels.png"><span>STREAM</span></div>
+<div>
+<img src="Archangels.png"><span>STREAM</span></div>
+<div>
+<img src="Archangels.png" ><span>STREAM</span></div>
+<div>
+<img src="Archangels.png"><span >STREAM</span></div>
+<div>
+<img src="Archangels.png" ><span>STREAM</span></div>
+<div>
+<img src="Archangels.png"><span >STREAM</span></div>
+</div>
+
+<div id="footer" style="display: flex; font-size: 14px;min-height: 300px;">
+<div id="leftfooter" style="margin-left: 40px;display:flex;flex-direction: column;min-height: 300px;justify-content: center;">
+<div>
+<img src="logo.png" style="width: 200px;"></div>
+<span style="margin-top: 20px;">SAFETY AND RESPONSIBILITY</span>
+<div>
+<img src="Group 3.png" style="margin-top: 20px;"></div>
+</div>
+
+
+<div id="rightfooter" style="display: flex;margin-left: auto;min-height: 300px;align-items: center;">
+<div style="display: flex;">
+<div style="display: flex;flex-direction: column;">
+<span >GAMES</span>
+<span >Sport</span>
+<span style="margin-top: 20px;">Live</span>
+<span style="margin-top: 20px;">Rules</span>
+<span>Sponsors</span>
+<span >Virtual</span>
+</div>
+<div style="display: flex;flex-direction: column;">
+<span >HOW TO PLAY</span>
+<span >Registration</span>
+<span >In-Game</span>
+<span >Agreement</span>
+<span style="margin-top: 20px;">Withdrawal Deposits Support</span>
+</div>
+<div style="display: flex;flex-direction: column;">
+<span >About Us</span>
+<span >GFBWIN888</span>
+<span style="margin-top: 20px;">FAQ</span>
+<span >Support Contacts</span>
+</div>
+<div style="display: flex;flex-direction: column;">
+<span >Disclaimer</span>
+<span >Game</span>
+<span >Responsible</span>
+<span style="margin-top: 20px;">Privacy and Security</span>
+<span >Cookies General Conditions</span>
+</div>
+</div>
+</div>
+</div>
+
+<div id="labels">
+<div id="paybrands">
+<img src="Group 11.png" style="margin-left: 20px;"></div>
+</div>
+
+</body>
+</html>
